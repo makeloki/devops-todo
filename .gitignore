@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+
+# Docker
+*.log
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (база данных у нас в volume, но на всякий случай)
+/data/
+*.db
