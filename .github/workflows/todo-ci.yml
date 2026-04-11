@@ -1,0 +1,29 @@
+name: ToDo App CI 
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Docker Compose version
+        run: docker compose version
+
+      - name: Build with Docker Compose
+        run: docker compose build
+
+      - name: Up and Down
+        run: |
+          docker compose up -d
+          echo "Wait five seconds because containers ups..."
+          sleep 5
+          docker compose ps
+          docker compose down 

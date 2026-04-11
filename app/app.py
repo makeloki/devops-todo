@@ -152,7 +152,7 @@ HTML_TEMPLATE = '''
         <div class="server-info">
             <span>🖥️ Сервер:</span> {{ hostname }} | 
             <span>⏰ Время:</span> {{ timestamp }} | 
-            <span>🐳 Контейнер:</span> {{ container_id[:12] if container_id else 'Unknown' }}
+            <span>🐳 Контейнер:</span> {{ container_id }}
         </div>
         
         <form method="POST" action="/add">
@@ -208,7 +208,8 @@ def index():
     # Информация о сервере
     hostname = socket.gethostname()
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    container_id = open('/etc/hostname', 'r').read().strip() if os.path.exists('/etc/hostname') else 'unknown'
+    container_id_full = open('/etc/hostname', 'r').read().strip() if os.path.exists('/etc/hostname') else 'unknown'
+    container_id = container_id_full[:12]  # Обрезаем до 12 символов
     
     return render_template_string(
         HTML_TEMPLATE,

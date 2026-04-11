@@ -20,3 +20,6 @@ Thumbs.db
 # Data (база данных у нас в volume, но на всякий случай)
 /data/
 *.db
+*.retry
+ansible/roles/
+ansible/ansible.cfg
